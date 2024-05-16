@@ -1,36 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import { fetchBobas } from '../services/bobaService';
+import React, { useState, useEffect } from 'react';
+import BobaCard from './BobaCard';
+import './BobaList.css';
 
 const BobaList = ({ refresh }) => {
-    const [bobas, setBobas] = useState([]);
+  const [bobas, setBobas] = useState([]);
 
-    useEffect(() => {
-        const getBobas = async () => {
-            try {
-                const bobas = await fetchBobas();
-                if (Array.isArray(bobas)) {
-                    setBobas(bobas);
-                } else {
-                    console.error('Bobas data is not an array:', bobas);
-                }
-            } catch (error) {
-                console.error('Failed to fetch bobas:', error);
-            }
-        };
+  useEffect(() => {
+    const fetchBobas = async () => {
+      try {
+        const response = await fetch('http://localhost:5555/api/bobas');
+        const data = await response.json();
+        setBobas(data);
+      } catch (error) {
+        console.error('Error fetching bobas:', error);
+      }
+    };
 
-        getBobas();
-    }, [refresh]);
+    fetchBobas();
+  }, [refresh]);
 
-    return (
-        <div>
-            <h2>Boba Menu</h2>
-            <ul>
-                {bobas.map(boba => (
-                    <li key={boba._id}>{boba.name} - ${boba.price.toFixed(2)}</li>
-                ))}
-            </ul>
-        </div>
-    );
+  return (
+    <div className="boba-list">
+      {bobas.map(boba => (
+        <BobaCard
+          key={boba._id}
+          name={boba.name}
+          price={boba.price}
+          description={boba.description}
+          imageUrl={boba.imageUrl}
+        />
+      ))}
+    </div>
+  );
 };
 
 export default BobaList;

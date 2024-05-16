@@ -18,7 +18,7 @@ const AddBobaForm = ({ onAdd }) => {
             setDescription('');
             setImageUrl('');
             setMessage('Boba added successfully!');
-            onAdd(); // Callback to refresh the list
+            onAdd();
         } catch (error) {
             setMessage('Failed to add boba.');
         }

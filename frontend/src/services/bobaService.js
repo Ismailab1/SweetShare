@@ -1,4 +1,3 @@
-// frontend/src/services/bobaService.js
 const API_URL = "http://localhost:5555/api/bobas";
 
 export const fetchBobas = async () => {
