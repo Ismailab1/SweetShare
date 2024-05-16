@@ -1,4 +1,3 @@
-// backend/routes/bobaRoutes.js
 import express from 'express';
 import { Boba } from '../models/bobaModel.js';
 

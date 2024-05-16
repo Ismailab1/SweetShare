@@ -1,6 +1,5 @@
 import { Boba } from '../models/bobaModel.js';
 
-// Controller to get all boba drinks
 export const getBobas = async (req, res) => {
     try {
         const bobas = await Boba.find();
@@ -10,7 +9,6 @@ export const getBobas = async (req, res) => {
     }
 };
 
-// Controller to add a new boba drink
 export const addBoba = async (req, res) => {
     const { name, price } = req.body;
 

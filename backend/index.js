@@ -7,10 +7,8 @@ import bobaRoutes from "./routes/bobaRoutes.js";
 
 const app = express();
 
-// Middleware to parse JSON bodies
 app.use(express.json());
 
-// Enable CORS
 app.use(cors());
 
 app.get('/', (req, res) => {
